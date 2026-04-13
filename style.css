@@ -1,12 +1,5 @@
 /* =========================================
    LEGO COSTRUZIONI SRL — style.css
-   Palette dal logo:
-   --sage:    #7EA99A  (verde salvia)
-   --sage-dk: #5C8C7E  (verde scuro)
-   --gray:    #7A7A7A  (grigio testo logo)
-   --gray-lt: #B0B0B0  (grigio chiaro cerchi)
-   --white:   #FFFFFF
-   --bg:      #F7F7F5  (bianco caldo pagina)
    ========================================= */
 
 *, *::before, *::after {
@@ -16,16 +9,16 @@
 }
 
 :root {
-  --sage:      #7EA99A;
-  --sage-dk:   #5C8C7E;
-  --sage-lt:   #C2D9D3;
-  --sage-xlt:  #EBF4F1;
-  --gray:      #6A6A6A;
-  --gray-lt:   #ADADAD;
-  --gray-xlt:  #E8E8E6;
-  --dark:      #2C2C2C;
-  --white:     #FFFFFF;
-  --bg:        #F7F7F5;
+  --sage: #7EA99A;
+  --sage-dk: #5C8C7E;
+  --sage-lt: #C2D9D3;
+  --sage-xlt: #EBF4F1;
+  --gray: #6A6A6A;
+  --gray-lt: #ADADAD;
+  --gray-xlt: #E8E8E6;
+  --dark: #2C2C2C;
+  --white: #FFFFFF;
+  --bg: #F7F7F5;
   --sidebar-w: 260px;
   --font-head: 'Raleway', sans-serif;
   --font-body: 'Lato', sans-serif;
@@ -33,7 +26,7 @@
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
   --shadow-md: 0 6px 24px rgba(0,0,0,0.10);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.14);
-  --radius:    8px;
+  --radius: 8px;
 }
 
 html {
@@ -130,17 +123,14 @@ body {
   color: var(--sage-dk);
 }
 
-.nav-link:hover::before {
+.nav-link:hover::before,
+.nav-link.active::before {
   transform: scaleY(1);
 }
 
 .nav-link.active {
   background: var(--sage-xlt);
   color: var(--sage-dk);
-}
-
-.nav-link.active::before {
-  transform: scaleY(1);
 }
 
 .nav-icon {
@@ -240,10 +230,10 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  background:
-    linear-gradient(135deg, #2C2C2C 0%, #3E4A47 50%, #4A6860 100%);
+  background: linear-gradient(135deg, #232323 0%, #34403d 48%, #56756b 100%);
   overflow: hidden;
   padding: 0 80px;
+  isolation: isolate;
 }
 
 .section-home::before {
@@ -254,26 +244,70 @@ body {
     repeating-linear-gradient(
       45deg,
       transparent,
-      transparent 40px,
-      rgba(255,255,255,0.015) 40px,
-      rgba(255,255,255,0.015) 41px
+      transparent 42px,
+      rgba(255,255,255,0.018) 42px,
+      rgba(255,255,255,0.018) 43px
     );
+  z-index: 0;
 }
 
 .section-home::after {
   content: '';
   position: absolute;
-  right: -80px;
-  top: -80px;
-  width: 500px;
-  height: 500px;
+  right: -120px;
+  top: -120px;
+  width: 560px;
+  height: 560px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(126,169,154,0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(126,169,154,0.22) 0%, rgba(126,169,154,0.08) 35%, transparent 72%);
+  z-index: 0;
+  animation: heroGlow 8s ease-in-out infinite;
+}
+
+.hero-bg-logo {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
+  width: min(44vw, 620px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-bg-logo::before {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(126,169,154,0.10) 38%, transparent 72%);
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.hero-bg-logo-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.13;
+  filter: grayscale(10%) brightness(1.35) contrast(0.95) drop-shadow(0 0 30px rgba(194,217,211,0.12));
+  animation: floatLogo 9s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(27,27,27,0.66) 0%, rgba(27,27,27,0.42) 34%, rgba(27,27,27,0.18) 62%, rgba(27,27,27,0.10) 100%);
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 640px;
 }
 
@@ -294,6 +328,7 @@ body {
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 24px;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.18);
 }
 
 .hero-title em {
@@ -304,7 +339,7 @@ body {
 .hero-subtitle {
   font-size: 1.05rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.76);
   line-height: 1.75;
   margin-bottom: 40px;
   max-width: 520px;
@@ -324,6 +359,8 @@ body {
   border-radius: var(--radius);
   transition: all var(--transition);
   box-shadow: 0 4px 20px rgba(126,169,154,0.35);
+  position: relative;
+  z-index: 3;
 }
 
 .btn-primary:hover {
@@ -336,13 +373,14 @@ body {
   position: absolute;
   right: 100px;
   bottom: 80px;
-  z-index: 2;
-  background: rgba(255,255,255,0.06);
+  z-index: 3;
+  background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(8px);
   border-radius: 16px;
   padding: 24px 28px;
   text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.16);
 }
 
 .badge-number {
@@ -362,6 +400,33 @@ body {
   text-transform: uppercase;
   margin-top: 6px;
   line-height: 1.4;
+}
+
+@keyframes floatLogo {
+  0% {
+    transform: translateY(0) scale(1) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.02) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(-2deg);
+  }
+}
+
+@keyframes heroGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
 }
 
 /* =========================================
@@ -658,6 +723,13 @@ body {
    RESPONSIVE
    ========================================= */
 
+@media (max-width: 1200px) {
+  .hero-bg-logo {
+    width: min(40vw, 500px);
+    right: 5%;
+  }
+}
+
 @media (max-width: 1024px) {
   :root {
     --sidebar-w: 220px;
@@ -683,6 +755,16 @@ body {
   .hero-badge {
     right: 40px;
     bottom: 60px;
+  }
+
+  .hero-bg-logo {
+    width: min(42vw, 420px);
+    right: 2%;
+    opacity: 1;
+  }
+
+  .hero-bg-logo-img {
+    opacity: 0.11;
   }
 }
 
@@ -763,6 +845,17 @@ body {
     display: none;
   }
 
+  .hero-bg-logo {
+    width: 72vw;
+    right: -8%;
+    top: 52%;
+  }
+
+  .hero-bg-logo-img {
+    opacity: 0.09;
+    animation-duration: 11s;
+  }
+
   .section-inner {
     padding: 50px 28px;
   }
@@ -778,5 +871,30 @@ body {
   .contatti-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-home {
+    padding: 48px 22px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .hero-bg-logo {
+    width: 88vw;
+    right: -20%;
+    top: 50%;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(90deg, rgba(27,27,27,0.78) 0%, rgba(27,27,27,0.58) 45%, rgba(27,27,27,0.22) 100%);
   }
 }
