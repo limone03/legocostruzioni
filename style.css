@@ -279,13 +279,7 @@ body {
 }
 
 .hero-bg-logo::before {
-  content: '';
-  position: absolute;
-  inset: 20%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(126,169,154,0.03) 40%, transparent 75%);
-  filter: blur(4px);
-  z-index: -1;
+  display: none;
 }
 
 .hero-bg-logo-img {
@@ -293,7 +287,7 @@ body {
   height: auto;
   display: block;
   object-fit: contain;
-  opacity: 0.35;
+  opacity: 0.30;
   filter: none;
   image-rendering: auto;
   animation: floatLogo 9s ease-in-out infinite;
