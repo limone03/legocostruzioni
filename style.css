@@ -293,7 +293,7 @@ body {
   height: auto;
   display: block;
   object-fit: contain;
-  opacity: 0.22;
+  opacity: 0.35;
   filter: none;
   image-rendering: auto;
   animation: floatLogo 9s ease-in-out infinite;
